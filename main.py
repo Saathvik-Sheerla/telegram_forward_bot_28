@@ -1,6 +1,6 @@
 from telethon.sync import TelegramClient, events
-from telethon.tl import types
 import logging
+
 
 api_id = '21638466'
 api_hash = 'bb4f4118aba1864c3a64391315d37464'
@@ -16,8 +16,9 @@ destination_channel_ids = [-1001918773030, -1001977156216]  # Replace with the c
 
 
 
-client = TelegramClient('message_forwarder_bot', api_id, api_hash).start(bot_token=bot_token)
+client = TelegramClient('message_forwarder_bot', api_id, api_hash)
 
+client.start(bot_token=bot_token)
 
 
 @client.on(events.NewMessage(chats=source_channel_id))
@@ -30,7 +31,6 @@ async def forward_message(event):
             print(f"Forwarded message to {destination_channel_id}: {message_text}")
     except Exception as e:
         print(f"Failed to forward message: {str(e)}")
-        
         
         
 
