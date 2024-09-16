@@ -26,10 +26,13 @@ async def forward_message(event):
         print(f"Forwarded message to : \n")
         for destination_channel_id in destination_channel_ids:
             # Extract text from the message and send it as a new message
-            message_text = event.message.message
-            await client.send_message(destination_channel_id, message_text)
+            message = event.message
+            await client.send_message(destination_channel_id, message)
             if flag == True:
-                print(f"\t\t\tMessage: {message_text}\n")
+                if len(message.message) != 0:
+                    print(f"\t\t\tMessage: {message.message}\n")
+                else:
+                    print(f"\t\t\tSome media(empty message text)\n")
                 flag = not flag
             print(f"\t\t\t{destination_channel_id}")
             
