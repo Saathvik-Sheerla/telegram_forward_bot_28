@@ -9,11 +9,9 @@ source_channel_id = -1001955364788  # Replace with the source channel ID
 destination_channel_ids = [-1001918773030, -1001977156216]  # Replace with the correct channel IDs (-100 prefix for channels)
 
 
-
 # 1673550274 , <--Destchannel IDS
 # 4061917094
 # 1918773030
-
 
 
 client = TelegramClient('message_forwarder_bot', api_id, api_hash)
@@ -24,14 +22,19 @@ client.start(bot_token=bot_token)
 @client.on(events.NewMessage(chats=source_channel_id))
 async def forward_message(event):
     try:
+        flag = True
+        print(f"Forwarded message to : \n")
         for destination_channel_id in destination_channel_ids:
             # Extract text from the message and send it as a new message
             message_text = event.message.message
             await client.send_message(destination_channel_id, message_text)
-            print(f"Forwarded message to {destination_channel_id}: {message_text}")
+            if flag == True:
+                print(f"\t\t\tMessage: {message_text}\n")
+                flag = not flag
+            print(f"\t\t\t{destination_channel_id}")
+            
     except Exception as e:
         print(f"Failed to forward message: {str(e)}")
-        
         
 
 # Configure logging
