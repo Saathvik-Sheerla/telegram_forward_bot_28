@@ -56,6 +56,11 @@ async def forward_message(event):
                     destination_channel_ids = group['values']
                     text_of_message = text_of_message[7:]
                     
+        else:
+            for group in groups:
+                if group['name'] == 'all':
+                    destination_channel_ids = group['values']
+                    
         
         message.message = text_of_message
         for destination_channel_id in destination_channel_ids:
