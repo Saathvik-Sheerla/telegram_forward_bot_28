@@ -49,13 +49,13 @@ async def forward_message(event):
                 if group['name'] == 'all':
                     destination_channel_ids = group['values']
                     text_of_message = text_of_message[3:]
-                    break
-        else:
+                    
+        elif groups_names[0:5] == 'group':
             for group in groups:
                 if group['name'] == groups_names:
                     destination_channel_ids = group['values']
                     text_of_message = text_of_message[7:]
-                    break
+                    
         
         message.message = text_of_message
         for destination_channel_id in destination_channel_ids:
