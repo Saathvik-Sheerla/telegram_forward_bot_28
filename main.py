@@ -1,10 +1,13 @@
+import os 
+from dotenv import load_dotenv
 from telethon.sync import TelegramClient, events
 import logging
 
+load_dotenv()
 
-api_id = '21638466'
-api_hash = 'bb4f4118aba1864c3a64391315d37464'
-bot_token = '6664976186:AAFW6_6IhzWZqfBuk7IRo1WSi-GDN8oJjuA'
+api_id = os.getenv("API_ID")
+api_hash = os.getenv("API_HASH")
+bot_token = os.getenv("BOT_TOKEN")
 source_channel_id = -1001955364788  # Replace with the source channel ID
 groups = [
     {'name': 'group_1', 'values': [-1001918773030, -1001977156216]},
